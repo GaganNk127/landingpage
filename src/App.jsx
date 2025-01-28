@@ -13,9 +13,8 @@ function App() {
     }
     setLoading(true);
     try {
-      const API_KEY = "AIzaSyCCGqptunHPy6uQqfB9YWD66LIIcXlKWDM";
       const response = await axios.post(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyCCGqptunHPy6uQqfB9YWD66LIIcXlKWDM`,
         {
           contents: [
             {
@@ -24,7 +23,7 @@ function App() {
           ],
         }
       );
-      const generatedText = response.data?.candidates?.[0]?.content || "No response";
+      const generatedText = response['data']['candidates'][0]['content'] || "No response";
       setResponseText(formatText(generatedText));
     } catch (error) {
       console.error("Error generating content:", error);
